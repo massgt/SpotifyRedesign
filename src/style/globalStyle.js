@@ -44,6 +44,11 @@ export const globalStyle = {
     fontSize: 20,
     color: '#000000',
   },
+  Satoshi20GreyMedium: {
+    fontFamily: 'Satoshi-Medium',
+    fontSize: 20,
+    color: '#BEBEBE',
+  },
   Satoshi20BlackBold: {
     fontFamily: 'Satoshi-Bold',
     fontSize: 20,
@@ -59,13 +64,28 @@ export const globalStyle = {
     fontSize: 18,
     color: '#000000',
   },
+  Satoshi18WhiteBold: {
+    fontFamily: 'Satoshi-Bold',
+    fontSize: 18,
+    color: '#FFFFFF',
+  },
   Satoshi14BlackRegular: {
     fontFamily: 'Satoshi-Regular',
     fontSize: 14,
     color: '#000000',
   },
+  Satoshi14GreyRegular: {
+    fontFamily: 'Satoshi-Regular',
+    fontSize: 14,
+    color: '#585858',
+  },
   Satoshi20Black2Regular: {
     fontFamily: 'Satoshi-Regular',
+    fontSize: 20,
+    color: '#404040',
+  },
+  Satoshi20Black2Bold: {
+    fontFamily: 'Satoshi-Bold',
     fontSize: 20,
     color: '#404040',
   },
@@ -89,8 +109,38 @@ export const globalStyle = {
     fontSize: 12,
     color: '#383838',
   },
+  Satoshi12GreyRegular: {
+    fontFamily: 'Satoshi-Regular',
+    fontSize: 12,
+    color: '#838383',
+  },
+  Satoshi13BlackRegular: {
+    fontFamily: 'Satoshi-Regular',
+    fontSize: 13,
+    color: '#383838',
+  },
+  Satoshi13BlackBold: {
+    fontFamily: 'Satoshi-Bold',
+    fontSize: 13,
+    color: '#3A3A3A',
+  },
   Satoshi15BlackRegular: {
     fontFamily: 'Satoshi-Regular',
+    fontSize: 15,
+    color: '#383838',
+  },
+  Satoshi15GreyMedium: {
+    fontFamily: 'Satoshi-Medium',
+    fontSize: 15,
+    color: '#FFFFFF4D',
+  },
+  Satoshi15WhiteBold: {
+    fontFamily: 'Satoshi-Bold',
+    fontSize: 15,
+    color: '#FFFFFF',
+  },
+  Satoshi15BlackBold: {
+    fontFamily: 'Satoshi-Bold',
     fontSize: 15,
     color: '#383838',
   },

@@ -67,7 +67,7 @@ const Login = ({params}) => {
 
         <ButtonLogin
           Title={'Sign In'}
-          Action={() => navigation.navigate('home')}
+          Action={() => navigation.navigate('Home')}
         />
 
         <View style={styles.lineWrapper}>

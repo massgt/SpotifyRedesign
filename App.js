@@ -16,9 +16,10 @@ import SplashScreen from './src/screens/OnBoarding/SplashScreen';
 import OnBoarding from './src/screens/OnBoarding/OnBoarding';
 import Home from './src/screens/Home/Home';
 import Explore from './src/screens/Explore/Explore';
-import Like from './src/screens/Like/Like';
-import Profile from './src/screens/Profile/Profile';
+import ArtistPage from './src/screens/Like/Like';
+import Profile from './src/screens/Profile';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NativeBaseProvider} from 'native-base';
 import {NavigationContainer} from '@react-navigation/native';
 import OnBoardingRegister from './src/screens/Register/OnBoardingRegister';
@@ -26,24 +27,86 @@ import Register from './src/screens/Register/Register';
 import Login from './src/screens/Login/Login';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import MusicPage from './src/screens/MusicPage/MusicPage';
+import Lyrics from './src/screens/Lyrics';
 
 const Stack = createStackNavigator();
-const Tab = createMaterialTopTabNavigator();
+const Tab = createBottomTabNavigator();
 
 const BottomTab = ({VisibilityTab}) => {
   return (
-    <Tab.Navigator tabBarPosition="bottom">
+    <Tab.Navigator>
       <Tab.Screen
-        name="home"
+        name="Home"
         component={Home}
         options={{
-          title: null,
-          cardStyle: {backgroundColor: 'transparent'},
-          headerTransparent: true,
-          tabBarIcon: (
-            <View>
-              <Image source={require('./src/assets/icons/home-active.png')} />
+          tabBarShowLabel: false,
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <View style={{}}>
+              {focused ? (
+                <View style={styles.barIcon}>
+                  <Image
+                    source={require('./src/assets/icons/home-active.png')}
+                    style={{width: 24, height: 23, marginTop: 12}}
+                  />
+                </View>
+              ) : (
+                <Image
+                  source={require('./src/assets/icons/home-inactive.png')}
+                  style={{width: 24, height: 23}}
+                />
+              )}
             </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Explore"
+        component={Explore}
+        options={{
+          tabBarShowLabel: false,
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <>
+              {focused ? (
+                <View style={styles.barIcon4}>
+                  <Image
+                    source={require('./src/assets/icons/explore-active.png')}
+                    style={{width: 24, height: 23, marginTop: 12}}
+                  />
+                </View>
+              ) : (
+                <Image
+                  source={require('./src/assets/icons/explore-inactive.png')}
+                  style={{width: 24, height: 23}}
+                />
+              )}
+            </>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Artist-Page"
+        component={ArtistPage}
+        options={{
+          tabBarShowLabel: false,
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <>
+              {focused ? (
+                <View style={styles.barIcon4}>
+                  <Image
+                    source={require('./src/assets/icons/heart-active.png')}
+                    style={{width: 24, height: 23, marginTop: 12}}
+                  />
+                </View>
+              ) : (
+                <Image
+                  source={require('./src/assets/icons/heart-inactive.png')}
+                  style={{width: 24, height: 23}}
+                />
+              )}
+            </>
           ),
         }}
       />
@@ -51,15 +114,24 @@ const BottomTab = ({VisibilityTab}) => {
         name="Profile"
         component={Profile}
         options={{
-          title: null,
-          cardStyle: {backgroundColor: 'transparent'},
-          headerTransparent: true,
-          tabBarIcon: (
-            <View>
-              <Image
-                source={require('./src/assets/icons/profile-active.png')}
-              />
-            </View>
+          tabBarShowLabel: false,
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <>
+              {focused ? (
+                <View style={styles.barIcon4}>
+                  <Image
+                    source={require('./src/assets/icons/profile-active.png')}
+                    style={{width: 24, height: 23, marginTop: 12}}
+                  />
+                </View>
+              ) : (
+                <Image
+                  source={require('./src/assets/icons/profile-inactive.png')}
+                  style={{width: 24, height: 23}}
+                />
+              )}
+            </>
           ),
         }}
       />
@@ -72,7 +144,7 @@ class App extends Component {
     return (
       <NativeBaseProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="splased">
+          <Stack.Navigator initialRouteName="Home">
             <React.Fragment>
               <Stack.Screen
                 component={SplashScreen}
@@ -125,16 +197,15 @@ class App extends Component {
                 name="login"
               />
               <Stack.Screen
-                component={Home}
+                component={BottomTab}
                 options={{
                   title: null,
                   cardStyle: {backgroundColor: 'transparent'},
                   headerTransparent: true,
                   headerShown: false,
                 }}
-                name="home">
-                {/* {props => <BottomTab {...props} />} */}
-              </Stack.Screen>
+                name="Home"
+              />
               <Stack.Screen
                 component={MusicPage}
                 options={{
@@ -146,14 +217,14 @@ class App extends Component {
                 name="music-page"
               />
               <Stack.Screen
-                component={Profile}
+                component={Lyrics}
                 options={{
                   title: null,
                   cardStyle: {backgroundColor: 'transparent'},
                   headerTransparent: true,
                   headerShown: false,
                 }}
-                name="profile"
+                name="lyrics"
               />
             </React.Fragment>
           </Stack.Navigator>
@@ -179,6 +250,20 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  barIcon: {
+    backgroundColor: '#42C83C',
+    height: 5,
+    marginTop: -24,
+    borderBottomRightRadius: 100,
+    borderBottomLeftRadius: 100,
+  },
+  barIcon4: {
+    backgroundColor: '#42C83C',
+    height: 5,
+    marginTop: -43,
+    borderBottomRightRadius: 100,
+    borderBottomLeftRadius: 100,
   },
 });
 

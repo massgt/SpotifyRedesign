@@ -45,3 +45,34 @@ export const playlistMusic = [
     },
   },
 ];
+
+export const listSongs = [
+  {
+    listMusic: {
+      title: 'Dont Smile At Me',
+      singer: 'Billie Eilish',
+      time: '5:33',
+    },
+  },
+  {
+    listMusic: {
+      title: 'Lilbubblegum',
+      singer: 'Billie Eilish',
+      time: '3:43',
+    },
+  },
+  {
+    listMusic: {
+      title: 'When We All Fall Asleep, Where Do We Go?',
+      singer: 'Billie Eilish',
+      time: '4:55',
+    },
+  },
+  {
+    listMusic: {
+      title: 'Bad Guy',
+      singer: 'Billie Eilish',
+      time: '4:55',
+    },
+  },
+];

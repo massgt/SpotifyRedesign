@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
+  StatusBar,
 } from 'react-native';
 import HeaderHome from '../../components/Header/HeaderHome';
 import {dataCategory} from '../../dummyData/category';
@@ -21,25 +22,17 @@ const Home = () => {
   const navigation = useNavigation();
   const [isSelected, setIsSelected] = useState('Music');
 
-  // onChangeNavToBlue = i => {
-  //   this.setState({navblue: i});
-  //   if (i === 'New Order') {
-  //     return this.onGetNewOrder();
-  //   } else if (i === 'Preparing') {
-  //     return this.onGetPreparingOrder();
-  //   } else if (i === 'On Delivery') {
-  //     return this.onGetDeliveryOrder();
-  //   } else if (i === 'Completed') {
-  //     return this.onGetCompletedOrder();
-  //   } else if (i === 'Cancelled') {
-  //     return this.onGetCancelledOrder();
-  //   } else {
-  //     this.onGetAllOrder();
-  //   }
-  // };
+  onChangeCategory = i => {
+    setIsSelected({isSelected: i});
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: '#F2F2F2'}}>
+      <StatusBar
+        translucent
+        backgroundColor={'transparent'}
+        barStyle={'dark-content'}
+      />
       <ScrollView>
         <HeaderHome />
         <View style={{marginHorizontal: 30}}>
@@ -49,7 +42,8 @@ const Home = () => {
               borderRadius: 30,
               paddingVertical: 15,
               paddingHorizontal: 20,
-              marginTop: 38,
+              // marginTop: 38,
+              marginTop: 51, //ip 14 pro
               flexDirection: 'row',
             }}>
             <View>
@@ -85,15 +79,15 @@ const Home = () => {
             {dataCategory.map((i, index) => (
               <View style={{alignItems: 'center', marginRight: 25}}>
                 {i === isSelected ? (
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={onChangeCategory}>
                     <Text style={{...globalStyle.Satoshi20BlackMedium}}>
                       {i}
                     </Text>
                     <View style={styles.lineCategory} />
                   </TouchableOpacity>
                 ) : (
-                  <TouchableOpacity>
-                    <Text style={{...globalStyle.Satoshi20BlackMedium}}>
+                  <TouchableOpacity onPress={onChangeCategory}>
+                    <Text style={{...globalStyle.Satoshi20GreyMedium}}>
                       {i}
                     </Text>
                     {/* <View style={styles.lineCategory} /> */}
@@ -142,7 +136,7 @@ const Home = () => {
           {playlistMusic.map((item, index) => (
             <TouchableOpacity
               style={styles.containerPlaylist}
-              onPress={() => navigation.navigate('profile')}>
+              onPress={() => navigation.navigate('music-page')}>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <TouchableOpacity style={styles.btnPlay2}>

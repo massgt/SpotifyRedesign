@@ -13,7 +13,8 @@ const HeaderHome = ({params}) => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: 30,
-        marginTop: 40,
+        // marginTop: 40,
+        marginTop: 53,
         alignItems: 'center',
       }}>
       <TouchableOpacity>

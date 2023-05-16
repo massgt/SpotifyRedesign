@@ -1,11 +1,33 @@
-import React, {useEffect} from 'react';
-import {Image, ScrollView, Text, View, StyleSheet} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {faChevronUp} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import BottomSheet from '@gorhom/bottom-sheet';
+import {useNavigation} from '@react-navigation/native';
+import React, {useCallback, useEffect, useMemo, useRef} from 'react';
+import {
+  Image,
+  ScrollView,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
+import RBSheet from 'react-native-raw-bottom-sheet';
 import HeaderMusicPage from '../../components/Header/HeaderMusicPage';
+import LyricsPage from '../../components/Lyrics/LyricsPage';
 import {listHorizontalMusic} from '../../dummyData/listMusic';
 import {globalStyle} from '../../style/globalStyle';
+import Lyrics from '../Lyrics';
 
 const MusicPage = props => {
+  const navigation = useNavigation();
+  // reff
+  const bottomSheetRef = useRef(null);
+  // variables
+  const snapPoints = useMemo(() => ['1% ', '98%'], []);
+  // callbacks
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handle sheet changes', index);
+  });
   console.log(listHorizontalMusic, '<<<<<<<');
   return (
     <View style={{flex: 1, backgroundColor: '#F2F2F2'}}>
@@ -51,13 +73,7 @@ const MusicPage = props => {
             </View>
           </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              marginTop: 40,
-            }}>
+          <View style={styles.wrapperButton}>
             <TouchableOpacity>
               <Image
                 source={require('../../assets/icons/Repeate.png')}
@@ -70,14 +86,7 @@ const MusicPage = props => {
                 style={{width: 26, height: 26}}
               />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                backgroundColor: '#42C83C',
-                padding: 20,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 100,
-              }}>
+            <TouchableOpacity style={styles.pauseButton}>
               <Image
                 source={require('../../assets/icons/Pause.png')}
                 style={{width: 28, height: 28}}
@@ -98,6 +107,48 @@ const MusicPage = props => {
           </View>
         </View>
       </ScrollView>
+      {/* <LyricsPage /> */}
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          alignItems: 'center',
+          alignSelf: 'center',
+          marginBottom: 26,
+        }}
+        onPress={() => RBSheetLyrics.open()}>
+        <FontAwesomeIcon icon={faChevronUp} />
+        <Text>Lyrics</Text>
+      </TouchableOpacity>
+      {/* <BottomSheet
+        handleIndicatorStyle={{display: 'none'}}
+        backgroundComponent={null}
+        ref={bottomSheetRef}
+        index={1}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <Lyrics />
+      </BottomSheet> */}
+      <RBSheet
+        closeOnDragDown={true}
+        ref={ref => {
+          RBSheetLyrics = ref;
+        }}
+        height={1000}
+        openDuration={400}
+        customStyles={{
+          draggableIcon: {backgroundColor: '#FFFFFF'},
+          container: {
+            // backgroundColor: '#FFFFFF',
+            paddingTop: 10,
+            // borderTopLeftRadius: 30,
+            // borderTopRightRadius: 30,
+            // paddingHorizontal: 36,
+            // paddingBottom: 27,
+          },
+        }}>
+        <Lyrics />
+      </RBSheet>
     </View>
   );
 };
@@ -120,5 +171,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 5,
+  },
+  wrapperButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  pauseButton: {
+    backgroundColor: '#42C83C',
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
   },
 });

@@ -5,7 +5,7 @@ import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {globalStyle} from '../../style/globalStyle';
 
-const HeaderMusicPage = ({params}) => {
+const HeaderProfile = ({params}) => {
   const navigation = useNavigation();
 
   return (
@@ -33,7 +33,7 @@ const HeaderMusicPage = ({params}) => {
           style={{width: 6, height: 12}}
         />
       </TouchableOpacity>
-      <Text style={{...globalStyle.Satoshi18BlackBold}}>Now Playing</Text>
+      <Text style={{...globalStyle.Satoshi18BlackBold}}>Profile</Text>
       <TouchableOpacity>
         <FontAwesomeIcon
           icon={faEllipsisVertical}
@@ -45,4 +45,4 @@ const HeaderMusicPage = ({params}) => {
   );
 };
 
-export default HeaderMusicPage;
+export default HeaderProfile;

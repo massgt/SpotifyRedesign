@@ -5,7 +5,7 @@ import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {globalStyle} from '../../style/globalStyle';
 
-const HeaderMusicPage = ({params}) => {
+const HeaderLyrics = ({title, margintop}) => {
   const navigation = useNavigation();
 
   return (
@@ -22,18 +22,18 @@ const HeaderMusicPage = ({params}) => {
         style={{
           width: 32,
           height: 32,
-          backgroundColor: '#0000000A',
+          backgroundColor: '#000000',
           borderRadius: 100,
           justifyContent: 'center',
           alignItems: 'center',
         }}
         onPress={() => navigation.goBack()}>
         <Image
-          source={require('../../assets/icons/back.png')}
+          source={require('../../assets/icons/back-lyrics.png')}
           style={{width: 6, height: 12}}
         />
       </TouchableOpacity>
-      <Text style={{...globalStyle.Satoshi18BlackBold}}>Now Playing</Text>
+      <Text style={{...globalStyle.Satoshi18WhiteBold}}>{title}</Text>
       <TouchableOpacity>
         <FontAwesomeIcon
           icon={faEllipsisVertical}
@@ -45,4 +45,4 @@ const HeaderMusicPage = ({params}) => {
   );
 };
 
-export default HeaderMusicPage;
+export default HeaderLyrics;

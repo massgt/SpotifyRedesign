@@ -58,7 +58,8 @@ const Register = ({params}) => {
         <View style={{marginTop: 35}}>
           <ButtonLogin
             Title={'Create Account'}
-            Action={() => navigation.navigate('home')}
+            // Action={() => navigation.navigate('BottomTab', {Screen: 'Home'})}
+            Action={() => navigation.navigate('login')}
           />
         </View>
 
